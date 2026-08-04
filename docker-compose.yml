@@ -1,14 +1,15 @@
 ﻿services:
-  postgres:
-    image: postgres:16
+  mysql:
+    image: mysql:8.0
     restart: always
     environment:
-      POSTGRES_USER: admefi
-      POSTGRES_PASSWORD: admefi123
-      POSTGRES_DB: crm_admefi
+      MYSQL_ROOT_PASSWORD: root123
+      MYSQL_DATABASE: crm_admefi
+      MYSQL_USER: admefi
+      MYSQL_PASSWORD: admefi123
     ports:
-      - 5433:5432
+      - 3307:3306
     volumes:
-      - pgdata:/var/lib/postgresql/data
+      - crm_mysql_data:/var/lib/mysql
 volumes:
-  pgdata:
+  crm_mysql_data:
