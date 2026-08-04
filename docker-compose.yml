@@ -1,0 +1,14 @@
+﻿services:
+  postgres:
+    image: postgres:16
+    restart: always
+    environment:
+      POSTGRES_USER: admefi
+      POSTGRES_PASSWORD: admefi123
+      POSTGRES_DB: crm_admefi
+    ports:
+      - 5433:5432
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+volumes:
+  pgdata:
