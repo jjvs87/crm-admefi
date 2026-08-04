@@ -15,6 +15,23 @@ class Lead extends Model
         'status', 'hunter_id',
     ];
 
+    protected static function booted(): void
+    {
+        static::creating(function (Lead $lead) {
+            if (empty($lead->hunter_id)) {
+                $hunter = User::where('role', 'hunter')
+                    ->where('active', true)
+                    ->withCount('leads')
+                    ->orderBy('leads_count')
+                    ->first();
+
+                if ($hunter) {
+                    $lead->hunter_id = $hunter->id;
+                }
+            }
+        });
+    }
+
     public function hunter()
     {
         return $this->belongsTo(User::class, 'hunter_id');
@@ -23,5 +40,10 @@ class Lead extends Model
     public function qualification()
     {
         return $this->hasOne(Qualification::class);
+    }
+
+    public function activities()
+    {
+        return $this->hasMany(Activity::class);
     }
 }

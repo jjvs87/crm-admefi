@@ -1,6 +1,7 @@
 <?php
 namespace App\Filament\Admin\Resources\Leads\Schemas;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Select;
 use Filament\Schemas\Schema;
 class LeadForm
 {
@@ -21,7 +22,11 @@ class LeadForm
                 TextInput::make('revenue')->label('Facturación aproximada')->numeric(),
                 TextInput::make('source')->label('Fuente del lead'),
                 TextInput::make('status')->label('Estatus')->required()->default('nuevo'),
-                TextInput::make('hunter_id')->label('Hunter asignado (ID)')->numeric(),
+                Select::make('hunter_id')
+                    ->label('Hunter asignado')
+                    ->relationship('hunter', 'name')
+                    ->searchable()
+                    ->helperText('Si lo dejas vacío, se asigna automáticamente al Hunter con menos leads.'),
             ]);
     }
 }
