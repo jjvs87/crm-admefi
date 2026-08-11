@@ -20,9 +20,11 @@ class OpportunityResource extends Resource
     protected static ?string $modelLabel = 'Oportunidad';
     protected static ?string $pluralModelLabel = 'Oportunidades';
 
-    protected static ?string $model = Opportunity::class;
+    protected static string|\UnitEnum|null $navigationGroup = 'Ventas';
+    protected static string|\BackedEnum|null $navigationIcon = 'heroicon-o-user-plus';
+    protected static ?int $navigationSort = 3;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static ?string $model = Opportunity::class;
 
     public static function form(Schema $schema): Schema
     {

@@ -21,9 +21,11 @@ class DocumentResource extends Resource
     protected static ?string $modelLabel = 'Documento';
     protected static ?string $pluralModelLabel = 'Documentos';
 
-    protected static ?string $model = Document::class;
+    protected static string|\UnitEnum|null $navigationGroup = 'Gestión';
+    protected static string|\BackedEnum|null $navigationIcon = 'heroicon-o-document-text';
+    protected static ?int $navigationSort = 1;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static ?string $model = Document::class;
 
     protected static ?string $recordTitleAttribute = 'type';
 

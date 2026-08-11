@@ -19,10 +19,14 @@ class FollowUpTaskResource extends Resource
     protected static ?string $navigationLabel = 'Tareas de Seguimiento';
     protected static ?string $modelLabel = 'Tarea de Seguimiento';
     protected static ?string $pluralModelLabel = 'Tareas de Seguimiento';
+
+    protected static string|\UnitEnum|null $navigationGroup = 'Gestión';
+    protected static string|\BackedEnum|null $navigationIcon = 'heroicon-o-bell-alert';
+    protected static ?int $navigationSort = 2;
 	
     protected static ?string $model = FollowUpTask::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+  
 
     protected static ?string $recordTitleAttribute = 'message';
 
