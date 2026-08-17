@@ -28,6 +28,7 @@ class AdminPanelProvider extends PanelProvider
             ->path('admin')
 	    ->login()
 	    ->brandName('Admefi CRM')
+	    ->font('Inter')
             ->colors([
                 'primary' => Color::Indigo,
             ])
