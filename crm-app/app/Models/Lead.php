@@ -46,4 +46,16 @@ class Lead extends Model
     {
         return $this->hasMany(Activity::class);
     }
+
+    public function opportunities()
+    {
+        return $this->hasMany(Opportunity::class);
+    }
+
+    public function clients()
+    {
+        return $this->hasMany(Client::class);
+    }
+
+	
 }

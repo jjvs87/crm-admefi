@@ -9,6 +9,13 @@ use Illuminate\Database\Eloquent\Builder;
 
 class PendingTasksWidget extends TableWidget
 {
+
+    public static function canView(): bool
+    {
+        return in_array(auth()->user()?->role, ['admin', 'director']);
+    }	
+		
+
     protected static ?string $heading = 'Tareas de Seguimiento Pendientes';
 
     public function table(Table $table): Table

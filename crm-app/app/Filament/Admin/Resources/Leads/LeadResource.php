@@ -23,6 +23,27 @@ class LeadResource extends Resource
 
     protected static ?string $model = Lead::class;
 
+
+    public static function getEloquentQuery(): \Illuminate\Database\Eloquent\Builder
+    {
+        $query = parent::getEloquentQuery();
+        $user = auth()->user();
+
+        if (in_array($user->role, ['admin', 'director'])) {
+            return $query;
+        }
+
+        if ($user->role === 'hunter') {
+            return $query->where('hunter_id', $user->id);
+        }
+
+        if ($user->role === 'closer') {
+            return $query->whereHas('opportunities', fn ($q) => $q->where('closer_id', $user->id));
+        }
+
+        return $query->whereRaw('1 = 0');
+    }
+
     public static function form(Schema $schema): Schema
     {
         return LeadForm::configure($schema);

@@ -8,6 +8,12 @@ use Filament\Widgets\StatsOverviewWidget\Stat;
 
 class LeadsByStatusWidget extends StatsOverviewWidget
 {
+    public static function canView(): bool
+    {
+        return in_array(auth()->user()?->role, ['admin', 'director']);
+    }
+
+
     protected function getStats(): array
     {
         return [

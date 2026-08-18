@@ -5,6 +5,12 @@ use Filament\Widgets\ChartWidget;
 
 class OpportunitiesByStageWidget extends ChartWidget
 {
+	
+    public static function canView(): bool
+    {
+        return in_array(auth()->user()?->role, ['admin', 'director']);
+    }
+
     protected ?string $heading = 'Oportunidades por Etapa';
 
     protected function getData(): array

@@ -24,6 +24,28 @@ class ClientResource extends Resource
 	
     protected static ?string $model = Client::class;
 
+
+    public static function getEloquentQuery(): \Illuminate\Database\Eloquent\Builder
+    {
+        $query = parent::getEloquentQuery();
+        $user = auth()->user();
+
+        if (in_array($user->role, ['admin', 'director'])) {
+            return $query;
+        }
+
+        if (in_array($user->role, ['closer', 'customer_success'])) {
+            return $query->where('responsible_id', $user->id);
+        }
+
+        return $query->whereRaw('1 = 0');
+    }
+
+    public static function shouldRegisterNavigation(): bool
+    {
+        return in_array(auth()->user()?->role, ['admin', 'director', 'closer', 'customer_success']);
+    }
+
     protected static string|\BackedEnum|null $navigationIcon = 'heroicon-o-building-office';
 
     public static function form(Schema $schema): Schema

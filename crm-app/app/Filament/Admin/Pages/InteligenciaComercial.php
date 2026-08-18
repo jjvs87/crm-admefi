@@ -17,6 +17,17 @@ class InteligenciaComercial extends Page
     protected static ?string $title = 'Inteligencia Comercial';
     protected static ?int $navigationSort = 5;
 
+
+    public static function shouldRegisterNavigation(): bool
+    {
+        return in_array(auth()->user()?->role, ['admin', 'director']);
+    }
+
+    public static function canAccess(): bool
+    {
+        return in_array(auth()->user()?->role, ['admin', 'director']);
+    }
+
     public $porCanal = [];
     public $porHunter = [];
     public $porCloser = [];

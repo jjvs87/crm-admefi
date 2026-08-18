@@ -24,6 +24,16 @@ class UserResource extends Resource
     protected static ?int $navigationSort = 1;
     protected static ?string $model = User::class;
 
+
+    public static function shouldRegisterNavigation(): bool
+    {
+        return auth()->user()?->role === 'admin';
+    }
+
+    public static function canViewAny(): bool
+    {
+        return auth()->user()?->role === 'admin';
+    }
   
     public static function form(Schema $schema): Schema
     {

@@ -27,6 +27,17 @@ class FollowUpTaskResource extends Resource
     protected static ?string $model = FollowUpTask::class;
 
   
+    public static function getEloquentQuery(): \Illuminate\Database\Eloquent\Builder
+    {
+        $query = parent::getEloquentQuery();
+        $user = auth()->user();
+
+        if (in_array($user->role, ['admin', 'director'])) {
+            return $query;
+        }
+
+        return $query->where('user_id', $user->id);
+    }
 
     protected static ?string $recordTitleAttribute = 'message';
 

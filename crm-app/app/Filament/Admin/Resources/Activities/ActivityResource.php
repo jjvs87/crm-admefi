@@ -26,6 +26,19 @@ class ActivityResource extends Resource
 
     protected static ?string $model = Activity::class;
 
+
+    public static function getEloquentQuery(): \Illuminate\Database\Eloquent\Builder
+    {
+        $query = parent::getEloquentQuery();
+        $user = auth()->user();
+
+        if (in_array($user->role, ['admin', 'director'])) {
+            return $query;
+        }
+
+        return $query->where('user_id', $user->id);
+    }
+
     public static function form(Schema $schema): Schema
     {
         return ActivityForm::configure($schema);
