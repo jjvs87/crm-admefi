@@ -10,3 +10,4 @@ Artisan::command('inspire', function () {
 use Illuminate\Support\Facades\Schedule;
 
 Schedule::command('crm:check-lead-inactivity')->daily();
+Schedule::command('crm:check-client-renewals')->daily();

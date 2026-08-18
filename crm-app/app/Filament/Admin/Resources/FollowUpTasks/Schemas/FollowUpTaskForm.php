@@ -25,6 +25,7 @@ class FollowUpTaskForm
                         'llamada_pendiente' => 'Llamada pendiente',
                         'recordatorio' => 'Recordatorio',
                         'alerta_director' => 'Alerta a Dirección',
+			'renovacion' => 'Renovación',
                     ])
                     ->required(),
                 Textarea::make('message')->label('Mensaje')->columnSpanFull(),
