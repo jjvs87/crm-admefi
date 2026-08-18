@@ -34,7 +34,8 @@ class AdminPanelProvider extends PanelProvider
                 \Wezlo\FilamentKanban\FilamentKanbanPlugin::make(),
             ])
             ->colors([
-                'primary' => Color::Indigo,
+                'primary' => Color::hex('#0070b5'),
+                'info' => Color::hex('#00548d'),
             ])
             ->discoverResources(in: app_path('Filament/Admin/Resources'), for: 'App\Filament\Admin\Resources')
             ->discoverPages(in: app_path('Filament/Admin/Pages'), for: 'App\Filament\Admin\Pages')
