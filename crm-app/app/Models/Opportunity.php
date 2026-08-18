@@ -26,6 +26,10 @@ class Opportunity extends Model
         'lead_id', 'closer_id', 'stage', 'product', 'amount', 'comments',
     ];
 
+    protected $casts = [
+        'stage' => \App\Enums\OpportunityStage::class,
+    ];
+
     public function lead()
     {
         return $this->belongsTo(Lead::class);

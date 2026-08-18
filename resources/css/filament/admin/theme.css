@@ -1,0 +1,6 @@
+@import '../../../../vendor/filament/filament/resources/css/theme.css';
+
+@source '../../../../app/Filament/**/*';
+@source '../../../../resources/views/**/*.blade.php';
+@source '../../../../vendor/wezlo/filament-kanban/resources/views/**/*.blade.php';
+@source '../../../../storage/framework/views/*.php';

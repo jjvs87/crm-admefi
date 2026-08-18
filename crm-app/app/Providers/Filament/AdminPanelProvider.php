@@ -29,6 +29,10 @@ class AdminPanelProvider extends PanelProvider
 	    ->login()
 	    ->brandName('Admefi CRM')
 	    ->font('Inter')
+	    ->viteTheme('resources/css/filament/admin/theme.css')
+	    ->plugins([
+                \Wezlo\FilamentKanban\FilamentKanbanPlugin::make(),
+            ])
             ->colors([
                 'primary' => Color::Indigo,
             ])
